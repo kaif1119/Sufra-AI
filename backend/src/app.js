@@ -39,6 +39,8 @@ passport.use(
   ),
 );
 
+app.get("/api/test",(req,res)=>res.send("Server Is Running...."))
+
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok" });
 });
