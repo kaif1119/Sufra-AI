@@ -34,3 +34,13 @@ export async function getCurrentUser(req, res) {
     user: req.user,
   });
 }
+
+export async function logout(req, res) {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: config.NODE_ENV === "production",
+    sameSite: config.NODE_ENV === "production" ? "none" : "lax",
+  });
+
+  res.status(200).json({ message: "Logged out" });
+}

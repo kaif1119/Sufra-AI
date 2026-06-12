@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { logout } from "../../auth/services/auth.api";
 import ChatHeader from "../components/ChatHeader";
 import ChatInput from "../components/ChatInput";
 import ChatSidebar from "../components/ChatSidebar";
@@ -109,6 +110,16 @@ const Home = () => {
     dispatch(setCurrentChatId(chatId));
   }
 
+  async function handleLogout() {
+    try {
+      await logout();
+    } catch (error) {
+      console.error(error);
+    } finally {
+      navigate("/auth", { replace: true });
+    }
+  }
+
   return (
     <div className="h-[100dvh] overflow-hidden bg-[#f6f7fb] text-[#101217]">
       <div className="grid h-[100dvh] grid-cols-1 overflow-hidden lg:grid-cols-[300px_1fr]">
@@ -117,6 +128,7 @@ const Home = () => {
           currentChatId={currentChatId}
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
+          onLogout={handleLogout}
           onNewChat={startNewChat}
           onSelectChat={selectChat}
         />
@@ -125,6 +137,7 @@ const Home = () => {
           <ChatHeader
             title={activeChatTitle}
             messageCount={activeMessages.length}
+            onLogout={handleLogout}
             onNewChat={startNewChat}
             onOpenSidebar={() => setIsSidebarOpen(true)}
           />

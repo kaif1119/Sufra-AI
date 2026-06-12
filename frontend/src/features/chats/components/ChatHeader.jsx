@@ -1,4 +1,4 @@
-function ChatHeader({ title, messageCount, onNewChat, onOpenSidebar }) {
+function ChatHeader({ title, messageCount, onLogout, onNewChat, onOpenSidebar }) {
   function handleSwitchGoogleAccount() {
     window.location.href = "/api/auth/google";
   }
@@ -40,6 +40,13 @@ function ChatHeader({ title, messageCount, onNewChat, onOpenSidebar }) {
           >
             <span className="xl:hidden">Switch account</span>
             <span className="hidden xl:inline">Switch Google account</span>
+          </button>
+          <button
+            type="button"
+            className="hidden h-9 items-center justify-center rounded-lg border border-[#dfe4ea] bg-white px-3 text-sm font-semibold text-[#b42318] shadow-sm transition hover:border-[#f4b8b2] hover:bg-[#fff5f3] lg:inline-flex"
+            onClick={onLogout}
+          >
+            Logout
           </button>
           <button
             type="button"

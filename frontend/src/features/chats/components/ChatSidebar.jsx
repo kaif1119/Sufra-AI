@@ -3,6 +3,7 @@ function ChatSidebar({
   currentChatId,
   isOpen,
   onClose,
+  onLogout,
   onNewChat,
   onSelectChat,
 }) {
@@ -18,6 +19,11 @@ function ChatSidebar({
 
   function handleSwitchGoogleAccount() {
     window.location.href = "/api/auth/google";
+  }
+
+  function handleLogout() {
+    onClose?.();
+    onLogout();
   }
 
   return (
@@ -71,6 +77,13 @@ function ChatSidebar({
             onClick={handleSwitchGoogleAccount}
           >
             Switch Google account
+          </button>
+          <button
+            type="button"
+            className="inline-flex h-10 w-full items-center justify-center rounded-lg border border-[#f4b8b2] bg-[#fff5f3] px-4 text-sm font-semibold text-[#b42318] shadow-sm transition hover:border-[#ee8f86]"
+            onClick={handleLogout}
+          >
+            Logout
           </button>
         </div>
 
