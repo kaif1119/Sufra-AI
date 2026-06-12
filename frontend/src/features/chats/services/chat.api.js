@@ -1,8 +1,25 @@
 
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
 
+export class AuthRequiredError extends Error {
+    constructor() {
+        super("Authentication required");
+        this.name = "AuthRequiredError";
+    }
+}
+
 function apiUrl(path) {
     return `${API_BASE_URL}${path}`;
+}
+
+function assertOk(res, message) {
+    if (res.status === 401) {
+        throw new AuthRequiredError();
+    }
+
+    if (!res.ok) {
+        throw new Error(message);
+    }
 }
 
 function normalizeChat(chat) {
@@ -21,9 +38,7 @@ export async function getChats() {
         credentials: "include",
     })
 
-    if (!res.ok) {
-        throw new Error("Failed to fetch chats")
-    }
+    assertOk(res, "Failed to fetch chats")
 
     const data = await res.json()
 
@@ -43,9 +58,7 @@ export async function getAiResponse({ message, chatId, onContent, onChat, onComp
         })
     })
 
-    if (!res.ok) {
-        throw new Error("Failed to get AI response")
-    }
+    assertOk(res, "Failed to get AI response")
 
     const stream = res.body;
 

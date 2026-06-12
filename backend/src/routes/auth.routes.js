@@ -1,14 +1,17 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { googleAuthCallback } from '../controllers/auth.controller.js';
+import { getCurrentUser, googleAuthCallback } from '../controllers/auth.controller.js';
+import { authMiddleware } from '../middlewares/auth.middleware.js';
 
 const authRouter = Router();
 
-//api/auth/google
+authRouter.get("/me", authMiddleware, getCurrentUser);
+
 authRouter.get("/google",
     passport.authenticate('google', {
         session: false,
-        scope: [ 'profile', 'email' ]
+        scope: [ 'profile', 'email' ],
+        prompt: 'select_account'
     })
 );
 

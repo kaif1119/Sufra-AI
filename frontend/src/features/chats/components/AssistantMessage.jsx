@@ -90,25 +90,25 @@ function highlightCodeLine(line, lineIndex) {
 
 function CodeBlock({ language, text }) {
   return (
-    <div className="my-5 overflow-hidden rounded-lg border border-[#1f2937] bg-[#0b1020] shadow-[0_18px_45px_rgba(15,23,42,0.16)]">
-      <div className="flex items-center justify-between border-b border-white/10 bg-[#111827] px-4 py-2.5">
+    <div className="my-4 max-w-full overflow-hidden rounded-lg border border-[#1f2937] bg-[#0b1020] shadow-[0_18px_45px_rgba(15,23,42,0.16)] sm:my-5">
+      <div className="flex items-center justify-between gap-3 border-b border-white/10 bg-[#111827] px-3 py-2.5 sm:px-4">
         <div className="flex items-center gap-2">
-          <span className="h-3 w-3 rounded-full bg-[#ef4444]" />
-          <span className="h-3 w-3 rounded-full bg-[#f59e0b]" />
-          <span className="h-3 w-3 rounded-full bg-[#22c55e]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ef4444] sm:h-3 sm:w-3" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#f59e0b] sm:h-3 sm:w-3" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e] sm:h-3 sm:w-3" />
         </div>
-        <span className="text-xs font-medium uppercase tracking-[0.12em] text-[#aab4c3]">
+        <span className="truncate text-xs font-medium uppercase tracking-[0.12em] text-[#aab4c3]">
           {language || "code"}
         </span>
       </div>
-      <pre className="max-h-[520px] overflow-auto p-4 text-[13px] leading-6 text-[#e5e7eb]">
+      <pre className="max-h-[420px] max-w-full overflow-auto p-3 text-xs leading-6 text-[#e5e7eb] sm:max-h-[520px] sm:p-4 sm:text-[13px]">
         <code>
           {text.map((line, lineIndex) => (
             <span
               key={lineIndex}
               className="block min-h-6 whitespace-pre font-mono"
             >
-              <span className="mr-4 inline-block w-7 select-none text-right text-[#64748b]">
+              <span className="mr-3 inline-block w-6 select-none text-right text-[#64748b] sm:mr-4 sm:w-7">
                 {lineIndex + 1}
               </span>
               {highlightCodeLine(line, lineIndex)}
@@ -224,8 +224,8 @@ function MarkdownBlock({ block }) {
   if (block.type === "heading") {
     const headingClass =
       block.level === 1
-        ? "pt-2 text-xl font-semibold leading-8 text-[#111827]"
-        : "pt-1 text-lg font-semibold leading-8 text-[#111827]";
+        ? "break-words pt-2 text-lg font-semibold leading-7 text-[#111827] sm:text-xl sm:leading-8"
+        : "break-words pt-1 text-base font-semibold leading-7 text-[#111827] sm:text-lg sm:leading-8";
 
     return (
       <h3 className={headingClass}>
@@ -242,7 +242,7 @@ function MarkdownBlock({ block }) {
         : "list-disc space-y-1 pl-5 marker:text-[#697386]";
 
     return (
-      <ListTag className={`${listClass} text-[#273142]`}>
+      <ListTag className={`${listClass} break-words text-[#273142]`}>
         {block.items.map((item, index) => (
           <li key={index} className="pl-1">
             <InlineText text={item} />
@@ -258,7 +258,7 @@ function MarkdownBlock({ block }) {
 
   if (block.type === "quote") {
     return (
-      <blockquote className="rounded-r-lg border-l-4 border-[#9eb3cb] bg-[#f6f7fb] px-4 py-3 text-[#4b5565]">
+      <blockquote className="break-words rounded-r-lg border-l-4 border-[#9eb3cb] bg-[#f6f7fb] px-4 py-3 text-[#4b5565]">
         <InlineText text={block.text} />
       </blockquote>
     );
@@ -269,7 +269,7 @@ function MarkdownBlock({ block }) {
   }
 
   return (
-    <p className="text-[#273142]">
+    <p className="break-words text-[#273142]">
       <InlineText text={block.text} />
     </p>
   );
@@ -283,7 +283,7 @@ function AssistantMessage({ content }) {
   }
 
   return (
-    <div className="space-y-4 text-[15px] leading-7">
+    <div className="min-w-0 space-y-4 text-sm leading-6 sm:text-[15px] sm:leading-7">
       {blocks.map((block, index) => (
         <MarkdownBlock key={index} block={block} />
       ))}

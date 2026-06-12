@@ -6,23 +6,21 @@ const Auth = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#F9F9F9] flex flex-col justify-center items-center p-6 font-['Inter',sans-serif]">
-            {/* Minimalist Brand / Logo Area */}
-            <div className="mb-12">
+        <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-[#F9F9F9] px-4 py-8 font-['Inter',sans-serif] sm:p-6">
+            <div className="mb-8 sm:mb-12">
                 <div className="w-12 h-12 bg-[#121212] rounded-lg mx-auto flex items-center justify-center shadow-sm">
                     <span className="text-white text-2xl font-bold tracking-tighter">A.</span>
                 </div>
             </div>
 
-            {/* Main Card */}
-            <div className="w-full max-w-[440px] bg-white rounded-xl border border-[#E5E5E5] shadow-[0_4px_30px_rgba(0,0,0,0.03)] p-12 text-center">
-                <h1 className="text-[28px] font-semibold text-[#121212] tracking-tight mb-3">Welcome back</h1>
-                <p className="text-[#6B6B6B] text-[15px] mb-12">Sign in to access your dashboard</p>
+            <div className="w-full max-w-[440px] bg-white rounded-xl border border-[#E5E5E5] shadow-[0_4px_30px_rgba(0,0,0,0.03)] px-5 py-8 text-center sm:p-12">
+                <h1 className="text-2xl font-semibold text-[#121212] tracking-tight mb-3 sm:text-[28px]">Welcome back</h1>
+                <p className="text-[#6B6B6B] text-sm mb-8 sm:mb-12 sm:text-[15px]">Sign in to access your dashboard</p>
                 
                 <button
                     type="button"
                     onClick={handleGoogleLogin}
-                    className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-white border border-[#E5E5E5] rounded-lg hover:bg-[#F9F9F9] hover:border-[#121212] transition-all duration-300 group shadow-sm"
+                    className="w-full flex items-center justify-center gap-3 px-4 py-3.5 bg-white border border-[#E5E5E5] rounded-lg hover:bg-[#F9F9F9] hover:border-[#121212] transition-all duration-300 group shadow-sm sm:px-6 sm:py-4"
                 >
                     <svg className="w-[22px] h-[22px]" viewBox="0 0 24 24">
                         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -33,7 +31,7 @@ const Auth = () => {
                     <span className="text-[#121212] font-medium text-[15px] tracking-wide">Continue with Google</span>
                 </button>
 
-                <div className="mt-12 text-[13px] text-[#858383] leading-relaxed">
+                <div className="mt-8 text-[13px] text-[#858383] leading-relaxed sm:mt-12">
                     By continuing, you agree to our <br/>
                     <a href="#" className="text-[#121212] hover:underline underline-offset-4 decoration-[#E5E5E5] hover:decoration-[#121212] transition-colors">Terms of Service</a> and <a href="#" className="text-[#121212] hover:underline underline-offset-4 decoration-[#E5E5E5] hover:decoration-[#121212] transition-colors">Privacy Policy</a>.
                 </div>

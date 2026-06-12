@@ -1,13 +1,13 @@
 import express from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
-// import cors from "cors";
 import path from "path";
 import authRoutes from "./routes/auth.routes.js";
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import config from "./config/config.js";
 import chatRoutes from "./routes/chat.routes.js";
+import { getAuthenticatedUser } from "./middlewares/auth.middleware.js";
 
 const app = express();
 
@@ -17,9 +17,16 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(cors({  credentials: true }));
 
 const frontendPath = path.join(path.resolve(), "../frontend/dist");
+
+app.get("/", (req, res, next) => {
+  if (!getAuthenticatedUser(req)) {
+    return res.redirect("/auth");
+  }
+
+  next();
+});
 
 app.use(express.static(frontendPath));
 
@@ -33,7 +40,6 @@ passport.use(
       callbackURL: config.GOOGLE_CALLBACK_URL,
     },
     (accessToken, refreshToken, profile, done) => {
-      // Handle user authentication logic here
       done(null, profile);
     },
   ),

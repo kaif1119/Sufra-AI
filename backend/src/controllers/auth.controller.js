@@ -28,3 +28,9 @@ export async function googleAuthCallback(req, res) {
 
   res.redirect(config.FRONTEND_URL);
 }
+
+export async function getCurrentUser(req, res) {
+  res.status(200).json({
+    user: req.user,
+  });
+}

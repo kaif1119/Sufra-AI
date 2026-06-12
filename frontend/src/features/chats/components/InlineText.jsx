@@ -16,8 +16,8 @@ function InlineText({ text, isUser = false }) {
           rel="noreferrer"
           className={
             isUser
-              ? "underline decoration-white/50 underline-offset-2"
-              : "font-medium text-[#255fd5] underline decoration-[#b9c7d8] underline-offset-2"
+              ? "break-words underline decoration-white/50 underline-offset-2"
+              : "break-words font-medium text-[#255fd5] underline decoration-[#b9c7d8] underline-offset-2"
           }
         >
           {link[1]}
@@ -29,7 +29,7 @@ function InlineText({ text, isUser = false }) {
       return (
         <code
           key={index}
-          className={`rounded px-1.5 py-0.5 font-mono text-[0.92em] ${isUser ? "bg-white/15 text-white" : "bg-[#eef2f7] text-[#1f2937]"}`}
+          className={`break-words rounded px-1.5 py-0.5 font-mono text-[0.92em] ${isUser ? "bg-white/15 text-white" : "bg-[#eef2f7] text-[#1f2937]"}`}
         >
           {part.slice(1, -1)}
         </code>
