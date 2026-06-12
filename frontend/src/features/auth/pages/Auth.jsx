@@ -9,7 +9,7 @@ const Auth = () => {
         <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-[#F9F9F9] px-4 py-8 font-['Inter',sans-serif] sm:p-6">
             <div className="mb-8 sm:mb-12">
                 <div className="w-12 h-12 bg-[#121212] rounded-lg mx-auto flex items-center justify-center shadow-sm">
-                    <span className="text-white text-2xl font-bold tracking-tighter">A.</span>
+                    <span className="text-white text-2xl font-bold tracking-tighter">Sufra Ai</span>
                 </div>
             </div>
 
